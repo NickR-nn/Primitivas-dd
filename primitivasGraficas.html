@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>linea</h1>
+    <canvas id="lienzo" width="1000" height="1000"></canvas>
+    <button id="btnTrasladar">Trasladar</button>
+    <script src="initGraphics.js"></script>
+    <script>
+        function lineaDDA(x1,y1,x2,y2){
+            var res, ax,ay,x,y;
+            var i;
+            if(Math.abs(x2-x1)>=Math.abs(y2-y1)){
+                res=Math.abs(x2-x1);
+            }else{
+                res=Math.abs(y2-y1);
+            }
+            ax=(x2-x1)/res;
+            ay=(y2-y1)/res;
+            x=x1;
+            y=y1;
+            i=1;
+            while(i<=res){
+                drawPixel(x,y,255,0,255,255);
+                x=x+ax;
+                y=y+ay;
+                i++;
+            }
+        }
+        function lineaBrese(x2, y2, x1, y1){
+            let res, dx, dy, x, y;
+            let i, m = 0
+            dx = x1 - x2
+            dy = y1 - y2
+            m = dy / dx
+
+            dx = Math.abs(dx)
+            dy = Math.abs(dy)
+            dy2 = 2 * dy
+            if (m > 0) {
+              do {
+
+              } while (i < dx);
+            }
+
+            if(Math.abs(x2-x1)>=Math.abs(y2-y1)){
+                res=Math.abs(x2-x1);
+            }else{
+                res=Math.abs(y2-y1);
+            }
+            ax=(x2-x1)/res;
+            ay=(y2-y1)/res;
+            x=x1;
+            y=y1;
+            i=1;
+            while(i<=res){
+                drawPixel(x,y,255,0,255,255);
+                x=x+ax;
+                y=y+ay;
+                i++;
+            }
+        }
+        function line(x0, y0, x1, y1) {
+   var dx = Math.abs(x1 - x0);
+   var dy = Math.abs(y1 - y0);
+   var sx = (x0 < x1) ? 1 : -1;
+   var sy = (y0 < y1) ? 1 : -1;
+   var err = dx - dy;
+
+   while(true) {
+      setPixel(x0, y0); // Do what you need to for this
+
+      if ((x0 === x1) && (y0 === y1)) break;
+      var e2 = 2*err;
+      drawPixel(x,y,255,0,255,255);
+      if (e2 > -dy) { err -= dy; x0  += sx; }
+      if (e2 < dx) { err += dx; y0  += sy; }
+   }
+}
+function lineaBrean  (x1, y1, x2, y2, red, green , blue, alpha) {
+  let x, y, dx, dy, p, pasox, pasoy
+  dx = x2 - x1
+  dy = y2 - y1
+  if (dy < 0) {
+    dy = -dy
+    pasoy = -1
+
+  }else {
+    pasoy = 1
+  } if (dx < 0)  {
+    dx = -dx
+    pasox = -1
+  } else {
+    pasox = 1
+  }
+  x = x1
+  y = y1
+  if (dx > dy) {
+    p = 2 * dy - dx
+    let incre1, incre2
+    incre1 = 2 * dy
+    incre2 = 2 * (dy - dx)
+    while (x != x2) {
+      x += pasox
+      if (p < 0) {
+        p = p + incre1
+      }else {
+        y += pasoy
+        p += incre2
+      }
+      drawPixel(x, y, red, green, blue, alpha);
+  }
+}
+else {
+  p = 2 * dx - dy
+  incre1 = 2 * dx
+  incre2 = 2 * (dx - dy)
+  while (y != y2) {
+    y += pasoy
+    if (p < 0) {
+      p += incre1
+    }else {
+      x += pasox
+      p += incre2
+    }
+    drawPixel(x, y, red, green, blue, alpha);
+  }
+}
+}
+
+function lineaBresenham  (x1, y1, x2, y2) {
+  let x, y, dx, dy, p, pasox, pasoy
+  dx = x2 - x1
+  dy = y2 - y1
+  if (dy < 0) {
+    dy = -dy
+    pasoy = -1
+
+  }else {
+    pasoy = 1
+  } if (dx < 0)  {
+    dx = -dx
+    pasox = -1
+  } else {
+    pasox = 1
+  }
+  x = x1
+  y = y1
+  if (dx > dy) {
+    p = 2 * dy - dx
+    let incre1, incre2
+    incre1 = 2 * dy
+    incre2 = 2 * (dy - dx)
+    while (x != x2) {
+      x += pasox
+      if (p < 0) {
+        p = p + incre1
+      }else {
+        y += pasoy
+        p += incre2
+      }
+      drawPixel(x, y, 62, 95, 138, 100);
+  }
+}
+else {
+  p = 2 * dx - dy
+  incre1 = 2 * dx
+  incre2 = 2 * (dx - dy)
+  while (y != y2) {
+    y += pasoy
+    if (p < 0) {
+      p += incre1
+    }else {
+      x += pasox
+      p += incre2
+    }
+    drawPixel(x, y, 62, 95, 138, 100);
+  }
+}
+}
+
+
+
+        // function linea45(x1,y1,x2,y2){
+        //     var res, ax,ay,x,y;
+        //     if(Math.abs(x2-x1)>=Math.abs(y2-y1)){
+        //         res=Math.abs(x2-x1);
+        //     }else{
+        //         res=Math.abs(y2-y1);
+        //     }
+        //     ax=(x2-x1)/res;
+        //     ay=(y2-y1)/res;
+        //     x=x1;
+        //     y=y1;
+        //     i=1;
+        //     while(i<=res){
+        //         drawPixel(x,y,255,0,255,255);
+        //         x=x+ax;
+        //         y=y+ay;
+        //         i++;
+        //     }
+        // }
+        // for(var i=50;i<=200;i++){
+        //     drawPixel(i,100,255,0,255,255);
+        //     updateCanvas();
+        // }
+        //lineaDDA(20,20,70,70);
+        //lineaBrean(20,20,70,70)
+        hexagono(200,200,100)
+        //examen(250, 250, 100)
+        //line(20,20,70,70);
+        //examen(250,250,120,80)
+        updateCanvas();
+        // linea45(20,20,70,70);
+        // updateCanvas();
+    </script>
+</body>
+</html>
